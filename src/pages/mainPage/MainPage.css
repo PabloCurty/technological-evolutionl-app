@@ -12,7 +12,8 @@
     margin: 0;
 }
 
-#main .search {
+#main .search,
+#main .new {
     display: flex;
     align-items: center;
     gap: 5px;
