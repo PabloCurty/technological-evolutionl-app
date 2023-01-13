@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import StarRating from './starRating/StarRating';
 
 const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
   const [newExp, setNewExp] = useState("");
@@ -10,15 +11,24 @@ const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
           <li className="item" key={experiencie._id}>
             <div className="info">
               <div className="owner">Client: {experiencie.nameClient}</div>
-              <div className="owner">Language: English</div>
+              <div className="owner">Language: {experiencie.language}</div>
               <div className="project">Project: {experiencie.nameProject}</div>
-              <div className="period">Period: </div>
+              <div className="name">Period: </div>
               {experiencie.period.map((period) => (
-                <div className="period">{period.substring(0, period.indexOf('T'))}</div>
+                <div className="period">
+                  {period.substring(0, period.indexOf("T"))}
+                </div>
               ))}
               <div className="name">Techs:</div>
               {experiencie.nameTech.map((nameTech) => (
-                <div className="tech">{nameTech}</div>
+                <div className="tech">
+                  {nameTech}
+                  <StarRating />
+                </div>
+              ))}
+              <div className="name">Direct Leaders:</div>
+              {experiencie.directLeaders.map((directLeader) => (
+                <div className="leader">{directLeader}</div>
               ))}
             </div>
             <button onClick={() => onDeleteExp(experiencie)}>Delete</button>
