@@ -9,15 +9,17 @@ const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
         {experiences.map((experiencie) => (
           <li className="item" key={experiencie._id}>
             <div className="info">
-              <div className="owner">
-                Client: {experiencie.nameClient}
-              </div>
-              <div className="project">
-                Project: {experiencie.nameProject}
-              </div>
-              <div className="name">
-                Tech: {experiencie.nameTech}
-              </div>
+              <div className="owner">Client: {experiencie.nameClient}</div>
+              <div className="owner">Language: English</div>
+              <div className="project">Project: {experiencie.nameProject}</div>
+              <div className="period">Period: </div>
+              {experiencie.period.map((period) => (
+                <div className="period">{period.substring(0, period.indexOf('T'))}</div>
+              ))}
+              <div className="name">Techs:</div>
+              {experiencie.nameTech.map((nameTech) => (
+                <div className="tech">{nameTech}</div>
+              ))}
             </div>
             <button onClick={() => onDeleteExp(experiencie)}>Delete</button>
           </li>
