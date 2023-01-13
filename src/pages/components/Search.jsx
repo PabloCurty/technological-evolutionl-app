@@ -8,15 +8,15 @@ const Search = ({ onSearch }) => {
     };
   return (
     <div className="search">
-      <label htmlFor="query">Procurar:</label>
+      <label htmlFor="query">Find:</label>
       <input
         type="search"
         name="query"
         id="query"
         value={query}
         onChange={(e) => setQuery(e.target.value)} />
-      <button onClick={handleClear}>Limpar</button>
-      <button onClick={() => onSearch(query)}>Procurar</button>
+      <button onClick={handleClear}>Clear</button>
+      <button onClick={() => onSearch(query)}>Search</button>
     </div>
   );
 };

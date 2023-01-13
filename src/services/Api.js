@@ -4,8 +4,8 @@ export const api = axios.create({
     baseURL: "http://localhost:5000",
 })
 
-export const getRepository = async (userId, query) => {
-    let url = `users/${userId}/repositories/`
+export const getExperience = async (userId, query) => {
+    let url = `users/${userId}/experiences/`
     if (query !== '') {
         url += `?q=${query}`;
     }

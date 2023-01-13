@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom'
 import "./MainPage.css"
 import Nav from '../components/Nav'
 import Search from '../components/Search'
-import Repositories from '../components/Repositories'
-import { getRepository } from '../../services/Api'
+import Experiences from "../components/Experiences";
+import { getExperience } from "../../services/Api";
 
-const userId = "63b2024b069058cc20cf0b63";
+const userId = "63c17d24530026f8f814a097";
 
 const MainPage = () => {
-  const [repositories, setRepositories] = useState([])
+  const [experiences, setExperiences] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingError, setLoadingError] = useState(false)
   const loadData = async (query = '') => {
     try {
       setLoading(true)
-      const response = await getRepository(userId);
-      setRepositories(response.data);
+      const response = await getExperience(userId);
+      setExperiences(response.data);
       setLoading(false)
     } catch (err) {
       console.log(err)
@@ -33,16 +33,16 @@ const MainPage = () => {
   const handleSearch = (query) => {
     console.log('query', query)
   }
-  const handleDeleteRepo = (repository) => {
-    console.log('delete repo', repository)
-  }
-  const handleNewRepo = (url) => {
-    console.log('new repo', url)
+  const handleDeleteExp = (experience) => {
+    console.log("delete expe", experience);
+  };
+  const handleNewExp = (url) => {
+    console.log('new exp', url)
   }
   if (loadingError) {
     return (
       <div className='loading'>
-        Erro ao carregar os dados de repositório.<Link to='/login'>Voltar</Link>
+        Erro ao carregar os dados de Experiencia.<Link to='/login'>Voltar</Link>
       </div>
     )
   }
@@ -55,13 +55,13 @@ const MainPage = () => {
   }
   return (
     <div id="main">
-      <Nav onLogout={handleLogout}/>
+      <Nav onLogout={handleLogout} />
       <Search onSearch={handleSearch} />
-      <Repositories
-        repositories={repositories}
-        onDeleteRepo={handleDeleteRepo}
-        onNewRepo={handleNewRepo} />
-      
+      <Experiences
+        experiences={experiences}
+        onDeleteExp={handleDeleteExp}
+        onNewExp={handleNewExp}
+      />
     </div>
   );
 }
