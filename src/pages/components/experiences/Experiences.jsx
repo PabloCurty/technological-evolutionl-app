@@ -15,7 +15,6 @@ const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
   return (
     <div className="repositories col-8">
       <Search onSearch={handleSearch} />
-      {/* <h2 className="title">Experience</h2> */}
       <ul className="list">
         {experiences.map((experiencie) => (
           <li className="item" key={experiencie._id}>
@@ -48,14 +47,14 @@ const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
       </ul>
       <div className="new">
         <label htmlFor="new-repo">Add New Experience</label>
-        {/* <input
+        { <input
           className='input-new-repo'
           type="url"
           name="new-repo"
           id="new-repo"
           value={newExp}
           onChange={(e) => setNewExp(e.target.value)}
-        /> */}
+        /> }
       <FontAwesomeIcon className="add-button" onClick={() => onNewExp(newExp)} icon={solid('plus')} />
       </div>
     </div>

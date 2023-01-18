@@ -17,7 +17,7 @@ const MainPage = () => {
   const [loadingError, setLoadingError] = useState(false);
   const loadData = async (query = "") => {
     try {
-      let testExperiences = [
+      /*let testExperiences = [
         {
           nameClient: "Modec",
           nameProject: "DT",
@@ -36,10 +36,10 @@ const MainPage = () => {
           directLeaders: ["teste1", "teste2", "teste3", "teste4", "teste"],
           period: ["2021-01-01T12:00:00Z"],
         },
-      ];
+      ];*/
       setLoading(true);
       const response = await getExperience(userId);
-      setExperiences(response);
+      setExperiences(response.data);
       setLoading(false);
     } catch (err) {
       console.log(err);

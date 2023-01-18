@@ -5,13 +5,12 @@ import { solid} from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const Search = ({ onSearch }) => {
     const [query, setQuery] = useState('') 
-    const handleClear = () => {
+    /*const handleClear = () => {
         setQuery('')
         onSearch('')
-    };
+    };*/
   return (
     <div className="search">
-      {/* <label className="find-label" htmlFor="query">Find:</label> */}
       <input
         className='input-search'
         type="search"
