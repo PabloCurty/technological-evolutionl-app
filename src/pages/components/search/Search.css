@@ -1,0 +1,36 @@
+#main .search {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 54, 61, 0.808);
+    padding: 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: sticky;
+    top: 70px;
+    
+}
+
+.input-search{
+    background-color: rgb(129, 129, 129);
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 50px;
+    padding-left: 15px;
+    color: white;
+}
+
+.find-label{
+    color: white;
+    margin-left: 5px;
+}
+
+.search-button{
+    color: white;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+
+}

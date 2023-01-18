@@ -1,0 +1,33 @@
+#main .nav {
+    display: flex;
+    align-items: center;
+    background-color: #00363d;
+    border-color: 1px solid #d5d5d5;
+    padding: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    color: white;
+    top: 0;
+    z-index: 99999;
+    position: sticky;
+}
+
+#main .nav .logo {
+    flex: 1;
+    font-size: 1rem;
+    margin: 0;
+}
+
+#main .nav .nav-button{
+    background-color: #00363d;
+    border-radius: 40px;
+    margin-right: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: none;
+    color: white;
+}
+
+#main .nav .logout-button:hover{
+    filter: brightness(120%);
+}

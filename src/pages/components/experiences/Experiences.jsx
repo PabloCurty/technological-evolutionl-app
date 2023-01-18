@@ -1,15 +1,25 @@
 import React, {useState} from 'react'
-import StarRating from './starRating/StarRating';
+import StarRating from '../starRating/StarRating';
+import "./Experiences.css";
+import Search from '../search/Search';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid} from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
   const [newExp, setNewExp] = useState("");
+
+  const handleSearch = (query) => {
+    console.log("query", query);
+  };
+  
   return (
-    <div className="repositories">
-      <h2 className="title">Experience</h2>
+    <div className="repositories col-8">
+      <Search onSearch={handleSearch} />
       <ul className="list">
         {experiences.map((experiencie) => (
           <li className="item" key={experiencie._id}>
             <div className="info">
+
               <div className="owner">Client: {experiencie.nameClient}</div>
               <div className="owner">Language: {experiencie.language}</div>
               <div className="project">Project: {experiencie.nameProject}</div>
@@ -36,15 +46,16 @@ const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
         ))}
       </ul>
       <div className="new">
-        <label htmlFor="new-repo">New Experience:</label>
-        <input
+        <label htmlFor="new-repo">Add New Experience</label>
+        { <input
+          className='input-new-repo'
           type="url"
           name="new-repo"
           id="new-repo"
           value={newExp}
           onChange={(e) => setNewExp(e.target.value)}
-        />
-        <button onClick={() => onNewExp(newExp)}>Add</button>
+        /> }
+      <FontAwesomeIcon className="add-button" onClick={() => onNewExp(newExp)} icon={solid('plus')} />
       </div>
     </div>
   );
