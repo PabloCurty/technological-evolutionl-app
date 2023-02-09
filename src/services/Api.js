@@ -12,3 +12,15 @@ export const getExperience = async (userId, query) => {
 
     return api.get(url)
 }
+
+export const createExperience = async (userId, experience) => {
+    const url = `/users/${userId}/experiences`;
+    return api.post(url, {
+      nameClient: "Facebook",
+      nameProject: experience,
+      language: "English",
+      nameTech: ["React", "Python"],
+      period: ["01/01/1999", "01/01/2012"],
+      directLeaders: ["Igor", "Alex"],
+    });
+}

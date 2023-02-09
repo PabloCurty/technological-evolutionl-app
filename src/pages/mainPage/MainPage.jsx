@@ -7,7 +7,7 @@ import Profile from "../components/profile/Profile";
 import Row from "react-bootstrap/Row";
 import { Container } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
-import { getExperience } from "../../services/Api";
+import { getExperience, createExperience } from "../../services/Api";
 
 const userId = "63c17d24530026f8f814a097";
 
@@ -54,8 +54,14 @@ const MainPage = () => {
   const handleDeleteExp = (experience) => {
     console.log("delete expe", experience);
   };
-  const handleNewExp = (url) => {
+  const handleNewExp = async (url) => {
     console.log("new exp", url);
+    try {
+      await createExperience(userId, url)
+    } catch (err) {
+      console.log(err);
+      setLoadingError(true)
+    }
   };
   if (loadingError) {
     return (
