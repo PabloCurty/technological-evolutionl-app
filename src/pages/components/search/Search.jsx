@@ -11,6 +11,7 @@ const Search = ({ onSearch }) => {
     };*/
   return (
     <div className="search">
+      <label className="label-search">Project Name search</label>
       <input
         className='input-search'
         type="search"

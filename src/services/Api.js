@@ -10,6 +10,8 @@ export const getExperience = async (userId, query) => {
         url += `?q=${query}`;
     }
 
+    console.log(query, url)
+
     return api.get(url)
 }
 
@@ -23,4 +25,9 @@ export const createExperience = async (userId, experience) => {
       period: ["01/01/1999", "01/01/2012"],
       directLeaders: ["Igor", "Alex"],
     });
+}
+
+export const destroyExperience = async (userId, id) => {
+    const url = `/users/${userId}/${id}/experiences`;
+    return api.delete(url);
 }

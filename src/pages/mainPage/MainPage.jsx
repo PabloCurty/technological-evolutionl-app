@@ -7,9 +7,9 @@ import Profile from "../components/profile/Profile";
 import Row from "react-bootstrap/Row";
 import { Container } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
-import { getExperience, createExperience } from "../../services/Api";
+import { getExperience, createExperience, destroyExperience } from "../../services/Api";
 
-const userId = "63c17d24530026f8f814a097";
+const userId = "63f2b2adee8edf33f22c0797";
 
 const MainPage = () => {
   const [experiences, setExperiences] = useState([]);
@@ -38,7 +38,7 @@ const MainPage = () => {
         },
       ];*/
       setLoading(true);
-      const response = await getExperience(userId);
+      const response = await getExperience(userId, query);
       setExperiences(response.data);
       setLoading(false);
     } catch (err) {
@@ -50,14 +50,28 @@ const MainPage = () => {
     (async () => await loadData())();
   }, []);
   const navigate = useNavigate();
-  const handleLogout = useCallback(() => navigate('/login', {replace: true}), [navigate]);
-  const handleDeleteExp = (experience) => {
+  const handleLogout = useCallback(() => navigate('/login', { replace: true }), [navigate]);
+
+  const handleSearch = (query) => {
+    loadData(query)
+  };
+  
+  const handleDeleteExp = async (experience) => {
     console.log("delete expe", experience);
+    try {
+      await destroyExperience(userId, experience._id)
+      await loadData();
+    } catch (err) {
+      console.log(err);
+      setLoadingError(true)
+    }
+    
   };
   const handleNewExp = async (url) => {
     console.log("new exp", url);
     try {
       await createExperience(userId, url)
+      await loadData();
     } catch (err) {
       console.log(err);
       setLoadingError(true)
@@ -83,6 +97,7 @@ const MainPage = () => {
             experiences={experiences}
             onDeleteExp={handleDeleteExp}
             onNewExp={handleNewExp}
+            onHandleSearch={handleSearch}
           />
         </Row>
       </Container>

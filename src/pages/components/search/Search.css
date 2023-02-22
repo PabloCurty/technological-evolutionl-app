@@ -12,7 +12,7 @@
 }
 
 .input-search{
-    background-color: rgb(129, 129, 129);
+    background-color: rgba(255, 252, 252, 0.151);
     border: none;
     margin-left: 5px;
     margin-right: 5px;
@@ -33,4 +33,13 @@
     margin-right: 10px;
     cursor: pointer;
 
+}
+
+.label-search {
+    border: none;
+    margin-left: -5px;
+    margin-right: 5px;
+    border-radius: 50px;
+    padding-left: 15px;
+    color: white;
 }

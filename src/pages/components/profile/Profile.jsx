@@ -9,7 +9,7 @@ const Profile = () => {
         <img
           src="https://i.ibb.co/wpYcybq/eu.jpg"
           alt="description"
-          class="user-photo"
+          className="user-photo"
         />
       </div>
       <div className="primary-info d-flex justify-content-center">
@@ -26,23 +26,23 @@ const Profile = () => {
       <div className="third-info">
         <Row>
           <Col>
-            <div class="profile-info-title">Info 1</div> Dummy Text
+            <div className="profile-info-title">Info 1</div> Dummy Text
           </Col>
           <Col>
-            <div class="profile-info-title">Info 2</div> Dummy Text
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div class="profile-info-title">Info 1</div> Dummy Text
-          </Col>
-          <Col>
-            <div class="profile-info-title">Info 2</div> Dummy Text
+            <div className="profile-info-title">Info 2</div> Dummy Text
           </Col>
         </Row>
         <Row>
           <Col>
-            <div class="profile-info-title">Info 1</div> Dummy Text
+            <div className="profile-info-title">Info 1</div> Dummy Text
+          </Col>
+          <Col>
+            <div className="profile-info-title">Info 2</div> Dummy Text
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="profile-info-title">Info 1</div> Dummy Text
           </Col>
         </Row>
       </div>

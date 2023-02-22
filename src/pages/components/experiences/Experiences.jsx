@@ -5,16 +5,12 @@ import Search from '../search/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid} from '@fortawesome/fontawesome-svg-core/import.macro'
 
-const Experiences = ({ experiences, onDeleteExp, onNewExp }) => {
+const Experiences = ({ experiences, onDeleteExp, onNewExp, onHandleSearch }) => {
   const [newExp, setNewExp] = useState("");
 
-  const handleSearch = (query) => {
-    console.log("query", query);
-  };
-  
   return (
     <div className="repositories col-8">
-      <Search onSearch={handleSearch} />
+      <Search onSearch={onHandleSearch} />
       <ul className="list">
         {experiences.map((experiencie) => (
           <li className="item" key={experiencie._id}>
