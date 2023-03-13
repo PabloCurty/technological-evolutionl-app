@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useContext } from "react";
 import "./LoginPage.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -6,16 +6,20 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import Form from "react-bootstrap/Form";
-import {useNavigate} from 'react-router-dom';
+import { AuthContext } from "../../contexts/Auth";
 
 const LoginPage = () => {
+  const { authenticated, user, login, logout} = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const handleLogin = useCallback(() => navigate('/', {replace: true}), [navigate]);
+  const handleLogin = async () => {
+    login(email, password);
+  }
   return (
     <div className="login-page">
       <div id="login-container" className="col-md-4">
+        <p>authenticated: {JSON.stringify(authenticated)}</p>
+        <p>Email: {JSON.stringify(user)}</p>
         <Container>
           <Row>
             <Col>
@@ -49,31 +53,6 @@ const LoginPage = () => {
                   </Button>
                 </Stack>
               </Form>
-              {/* <div className="form">
-                <div className="field">
-                  <label htmlFor="email">Email:</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="field">
-                  <label htmlFor="password">Password:</label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div className="actions">
-                  <button onClick={handleLogin}>Send</button>
-                </div>
-              </div> */}
             </Col>
           </Row>
         </Container>

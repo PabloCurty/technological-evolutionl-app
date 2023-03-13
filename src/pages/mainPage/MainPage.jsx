@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./MainPage.css";
 import Nav from "../components/nav/Nav";
@@ -8,37 +8,17 @@ import Row from "react-bootstrap/Row";
 import { Container } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import { getExperience, createExperience, destroyExperience } from "../../services/Api";
-
-const userId = "63f2b2adee8edf33f22c0797";
+import { AuthContext } from "../../contexts/Auth";
 
 const MainPage = () => {
+  const { user, logout } = useContext(AuthContext);
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
   const loadData = async (query = "") => {
     try {
-      /*let testExperiences = [
-        {
-          nameClient: "Modec",
-          nameProject: "DT",
-          nameTech: ["React"],
-          language: "Inglês",
-          _id: "1",
-          directLeaders: ["teste1", "teste2", "teste3", "teste4", "teste"],
-          period: ["2021-01-01T12:00:00Z"],
-        },
-        {
-          nameClient: "Modec",
-          nameProject: "DT",
-          nameTech: ["React"],
-          language: "Inglês",
-          _id: "2",
-          directLeaders: ["teste1", "teste2", "teste3", "teste4", "teste"],
-          period: ["2021-01-01T12:00:00Z"],
-        },
-      ];*/
       setLoading(true);
-      const response = await getExperience(userId, query);
+      const response = await getExperience(user?.id, query);
       setExperiences(response.data);
       setLoading(false);
     } catch (err) {
@@ -49,8 +29,10 @@ const MainPage = () => {
   useEffect(() => {
     (async () => await loadData())();
   }, []);
-  const navigate = useNavigate();
-  const handleLogout = useCallback(() => navigate('/login', { replace: true }), [navigate]);
+  
+  const handleLogout = () => {
+    logout();
+  }
 
   const handleSearch = (query) => {
     loadData(query)
@@ -59,7 +41,7 @@ const MainPage = () => {
   const handleDeleteExp = async (experience) => {
     console.log("delete expe", experience);
     try {
-      await destroyExperience(userId, experience._id)
+      await destroyExperience(user?.id, experience._id)
       await loadData();
     } catch (err) {
       console.log(err);
@@ -70,7 +52,7 @@ const MainPage = () => {
   const handleNewExp = async (url) => {
     console.log("new exp", url);
     try {
-      await createExperience(userId, url)
+      await createExperience(user?.id, url)
       await loadData();
     } catch (err) {
       console.log(err);
