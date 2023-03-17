@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        if(user && token){
+        if (user && token) {
             setUser(JSON.parse(user));
             api.defaults.headers.Authorization = `Bearer ${token}`;
         }
@@ -25,7 +25,13 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('token', JSON.stringify(response.data.token));
         api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
         setUser(response.data.user);
-        navigate('/');
+        console.log(response.data.user.isTutor);
+        if (response.data.user.isTutor) {
+            navigate('/wards')
+        } else {
+            navigate('/');    
+        }
+        
     };
     const logout = () => {
         localStorage.removeItem('user');
@@ -43,7 +49,7 @@ export const AuthProvider = ({ children }) => {
                 login,
                 logout
             }} >
-            {children}    
+            {children}
         </AuthContext.Provider>
     )
 }

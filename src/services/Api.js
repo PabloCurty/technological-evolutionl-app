@@ -35,3 +35,10 @@ export const destroyExperience = async (userId, id) => {
     const url = `/users/${userId}/${id}/experiences`;
     return api.delete(url);
 }
+
+
+export const getProfile = async (userId) => {
+    let url = `users/${userId}/persons/`
+    console.log(url)
+    return api.get(url)
+}

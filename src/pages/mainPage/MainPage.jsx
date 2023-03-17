@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./MainPage.css";
 import Nav from "../components/nav/Nav";
@@ -6,7 +6,6 @@ import Experiences from "../components/experiences/Experiences";
 import Profile from "../components/profile/Profile";
 import Row from "react-bootstrap/Row";
 import { Container } from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
 import { getExperience, createExperience, destroyExperience } from "../../services/Api";
 import { AuthContext } from "../../contexts/Auth";
 
@@ -71,7 +70,7 @@ const MainPage = () => {
   }
   return (
     <div id="main">
-      <Nav onLogout={handleLogout} />
+      <Nav onLogout={handleLogout} pageName="My Experiences" />
       <Container>
         <Row className="mt-5 d-flex justify-content-around">
           <Profile />
