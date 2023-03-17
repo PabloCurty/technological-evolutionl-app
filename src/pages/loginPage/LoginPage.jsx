@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../contexts/Auth";
 
 const LoginPage = () => {
-  const { authenticated, user, login, logout} = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = async () => {
@@ -18,8 +18,6 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div id="login-container" className="col-md-4">
-        <p>authenticated: {JSON.stringify(authenticated)}</p>
-        <p>Email: {JSON.stringify(user)}</p>
         <Container>
           <Row>
             <Col>

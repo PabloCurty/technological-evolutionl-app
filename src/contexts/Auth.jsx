@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { createSession } from '../services/Api';
+import { api, createSession } from '../services/Api';
 import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
@@ -11,8 +11,10 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const user = localStorage.getItem('user');
-        if(user){
+        const token = localStorage.getItem('token');
+        if(user && token){
             setUser(JSON.parse(user));
+            api.defaults.headers.Authorization = `Bearer ${token}`;
         }
         setLoading(false);
     }, []);
@@ -20,11 +22,15 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         const response = await createSession(email, password);
         localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
         setUser(response.data.user);
         navigate('/');
     };
     const logout = () => {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        api.defaults.headers.Authorization = null;
         setUser(null);
         navigate('/login')
     };
